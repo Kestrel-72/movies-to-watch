@@ -49,7 +49,39 @@
     <footer></footer>
   </main>
   <aside class="sidebar">
-    <h3>New movie</h3>
+    <h2>New movie</h2>
+    <form action="#" class="movie-form">
+      <ul>
+        <li>
+          <label for="title">Title: </label>
+          <input id="title" type="text"></li>
+        <li>
+          <label for="year">Release date: </label>
+          <input id="year" type="text"></li>
+        <li>
+          <label for="watched">I watched it </label>
+          <input id="watched" type="checkbox">
+        </li>
+        <li>
+          <label for="stars">Rating:</label>
+          <input id="stars" type="number">
+        </li>
+      </ul>
+      <div class="form-buttons">
+        <button class="discard-changes" type="button">
+          <span class="material-icons">
+            delete
+          </span>
+          Discard
+        </button>
+        <button class="save-movie" type="button">
+          <span class="material-icons">
+            bookmark_add
+          </span>
+          Save
+        </button>
+      </div>
+    </form>
   </aside>
 </body>
 </html>

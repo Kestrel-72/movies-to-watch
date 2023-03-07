@@ -9,16 +9,15 @@ html {
 }
 
 body {
-  width: 1000px;
+  width: 1100px;
   margin: 0 auto;
-  border: 1px solid black;
   display: grid;
-  grid-template-columns: 600px 400px;
+  grid-template-columns: 600px 500px;
 }
 
 main {
   padding: 24px;
-  border-right: 1px solid blue;
+  border: 1px solid black;
 }
 
 header {
@@ -32,9 +31,10 @@ h1 {
   padding-left: 16px;
 }
 
-header button.add-new-title {
+button.add-new-title, button.discard-changes, button.save-movie {
   font-size: 1rem;
   width: 100px;
+  height: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +63,7 @@ header button.add-new-title span{
   font-size: 1.2rem;
 }
 
-.to-watch-list {
+.to-watch-list, .movie-form ul {
   list-style: none;
 }
 
@@ -95,4 +95,53 @@ header button.add-new-title span{
   color: rgb(255, 123, 0);
 }
 
+.sidebar {
+  padding: 24px;
+  border: 1px solid black;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  width: max-content;
+  margin: 0 auto;
+}
+
+.movie-form ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px; 
+  font-size: 1.5rem;
+}
+
+.movie-form li {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+.movie-form li input[id="watched"] {
+  margin: 0;
+  width: 30px;
+}
+
+.movie-form label {
+  width: 150px;
+  padding: 8px;
+}
+
+.movie-form input {
+  font-size: 1rem;
+  padding: 8px;
+  height: 2rem;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.discard-changes {
+  background-color: rgb(124, 32, 32);
+}
 
