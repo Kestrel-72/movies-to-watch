@@ -80,7 +80,7 @@ header button.add-new-title span{
   background-color: rgb(233, 233, 233);
 }
 
-.to-watch-list li h2 {
+.to-watch-list li h3 {
   font-size: 1.5rem;
   margin: 0;
 }
