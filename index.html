@@ -5,12 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movies to Watch</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <main>
     <header>
       <h1>Movies to Watch</h1>
-      <button class="add-new-title">New</button>
+      <button class="add-new-title" type="button">
+        <span class="material-icons">
+          slideshow
+        </span>
+        New</button>
     </header>
     <div class="filter-section">
       <label for="sort">Sort by: </label>
@@ -24,11 +31,18 @@
       <ul class="to-watch-list">
         <li>
           <h2>Breaking Bad <span class="year">(2008-2013)</span></h2>
-          <div class="rating">10<span>"star"</span></div>
+          <div class="rating">10
+            <span class="material-icons">
+            star
+            </span>
+          </div>
         </li>
         <li>
           <h2>Fury <span class="year">(2014)</span></h2>
-          <div class="rating">7<span>"star"</span></div>
+          <div class="rating">7
+            <span class="material-icons">
+            star
+            </span></div>
         </li>
       </ul>
     </div>
