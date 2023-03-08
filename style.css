@@ -73,7 +73,7 @@ header button.add-new-title span{
   align-items: baseline;
   padding: 16px;
   border-radius: 8px;
-  height: 60px;
+  height: min-content;
 }
 
 .to-watch-list > li:hover {
@@ -120,7 +120,7 @@ header button.add-new-title span{
   align-items: center;
 }
 
-.movie-form li input[id="watched"] {
+.movie-form li input[id="is-watched"] {
   margin: 0;
   width: 30px;
 }
