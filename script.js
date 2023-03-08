@@ -1,5 +1,6 @@
 let moviesArray = [];
 let aside = document.querySelector(".sidebar");
+
 let newMovieButton = document.querySelector(".add-new-movie");
 newMovieButton.addEventListener("click", createFormSection);
 
@@ -12,7 +13,7 @@ function Movie(title, releaseDate, isWatched, rating) {
   this.rating = rating;
 }
 
-function saveMovie() {
+function addMovieToArray() {
   let title = document.getElementById("title").value;
   let releaseDate = document.getElementById("year").value;
   let isWatched = document.getElementById("is-watched").checked;
@@ -24,7 +25,11 @@ function saveMovie() {
 
 function createListItem(movie) {
   let newListItem = document.createElement("li");
-
+  let newIndex = moviesArray.length-1;
+  newListItem.setAttribute("data-index", newIndex);
+  newListItem.addEventListener("click", () => {
+    showInfo(moviesArray[newIndex]);
+  })
   let newH3 = document.createElement("h3");
   newH3.textContent = movie.title;
   newListItem.append(newH3);
@@ -116,12 +121,96 @@ function createFormSection() {
 
   saveMovieButton.addEventListener("click", () => {
     if (document.getElementById("title").value != "") {
-      saveMovie(); 
+      addMovieToArray(); 
       createListItem(moviesArray[moviesArray.length-1]);
     }
   });
   
   formButtonsDiv.append(discardChangesButton, saveMovieButton);
+  form.append(formButtonsDiv);
+  aside.append(form);
+}
+
+function showInfo(item) {
+  clearAside();
+  let h2 = document.createElement("h2");
+  h2.textContent = item.title;
+
+  let form = document.createElement("form");
+  form.classList.add("movie-form");
+
+  let ul = document.createElement("ul");
+
+  for (let i = 0; i < 4; i++) {
+    let li = document.createElement("li");
+    let label = document.createElement("label");
+    let input = document.createElement("input");
+    if (i == 0) {
+      label.setAttribute("for", "title");
+      label.textContent = "Title: ";
+      input.setAttribute("id", "title");
+      input.setAttribute("type", "text");
+      input.value = item.title;
+    } else if (i == 1) {
+      label.setAttribute("for", "year");
+      label.textContent = "Release date: ";
+      input.setAttribute("id", "year");
+      input.setAttribute("type", "number");
+      input.value = item.releaseDate;
+    } else if (i == 2) {
+      label.setAttribute("for", "is-watched");
+      label.textContent = "I watched it ";
+      input.setAttribute("id", "is-watched");
+      input.setAttribute("type", "checkbox");
+      if (item.isWatched) input.checked = true;
+    } else if (i == 3) {
+      label.setAttribute("for", "stars");
+      label.textContent = "Rating";
+      input.setAttribute("id", "stars");
+      input.setAttribute("type", "number");
+      input.value = item.rating;
+    }
+    li.append(label, input);
+    ul.append(li);
+  }
+  form.append(ul);
+  aside.append(h2);
+ 
+
+  let formButtonsDiv = document.createElement("div");
+  formButtonsDiv.classList.add("form-buttons"); 
+
+  let deleteItemButton = document.createElement("button");
+  deleteItemButton.classList.add("discard-changes");
+  deleteItemButton.setAttribute("type", "button");
+  let spanOne = document.createElement("span");
+  spanOne.classList.add("material-icons");
+  spanOne.textContent = "delete";
+  deleteItemButton.append(spanOne, " Delete");
+
+  deleteItemButton.addEventListener("click", clearAside);
+  deleteItemButton.addEventListener("click", () => {
+    let itemToDelete = document.querySelector(`[data-index='${moviesArray.indexOf(item)}']`);
+    console.log(itemToDelete);
+    itemToDelete.remove();
+    // moviesArray.splice(moviesArray.indexOf(item), 1);
+  })
+  
+
+  let editButton = document.createElement("button");
+  editButton.classList.add("save-movie");
+  editButton.setAttribute("type", "button");
+  let spanTwo = document.createElement("span");
+  spanTwo.classList.add("material-icons");
+  spanTwo.textContent = "bookmark_add";
+  editButton.append(spanTwo, " Edit");
+
+  // editButton.addEventListener("click", () => {
+  //   if (document.getElementById("title").value != "") {
+    
+  // });
+  
+  formButtonsDiv.append(deleteItemButton, editButton);
   form.append(formButtonsDiv);
   aside.append(form);
 }
