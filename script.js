@@ -1,6 +1,7 @@
 let moviesArray = [];
 let toWatchList = document.querySelector(".to-watch-list");
 let aside = document.querySelector(".sidebar");
+let sortMode;
 
 function Movie(title, releaseDate, isWatched, rating) {
   this.title = title;
@@ -16,6 +17,18 @@ newMovieButton.addEventListener("click", () => {
 });
 
 function updateDisplay() {
+	if (sortMode == "title") {
+	  sortByTitle(moviesArray);
+	}
+	if (sortMode == "year") {
+	  sortByReleaseDate(moviesArray);
+	}
+  if (sortMode == "isWatched") {
+    sortByIsWatched(moviesArray);
+  }
+  if (sortMode == "rating") {
+    sortByRating(moviesArray);
+  }
   clearDisplay();
   moviesArray.forEach(movie => createListItem(movie, moviesArray.indexOf(movie)));
 }
@@ -206,3 +219,88 @@ buttonToRecommend.addEventListener("click", () => {
   showRecommendations();
   updateDisplay();
 });
+
+let buttonToSortByTitle = document.getElementById("sort-title");
+buttonToSortByTitle.addEventListener("click", () => {
+  if (sortMode != "title") {
+    sortMode = "title";
+    console.log("I sort by title now");
+  } else {
+    sortMode = "";
+    console.log("I don't sort now");
+  }
+  updateDisplay();
+})
+
+let buttonToSortByReleaseDate= document.getElementById("sort-year");
+buttonToSortByReleaseDate.addEventListener("click", () => {
+  if (sortMode != "year") {
+    sortMode = "year";
+    console.log("I sort by year now");
+  } else {
+    sortMode = "";
+    console.log("I don't sort now");
+  }
+  updateDisplay();
+})
+
+let buttonToSortByIsWatched = document.getElementById("sort-watched");
+buttonToSortByIsWatched.addEventListener("click", () => {
+  if (sortMode != "isWatched") {
+    sortMode = "isWatched";
+    console.log("I sort by isWatched now");
+  } else {
+    sortMode = "";
+    console.log("I don't sort now");
+  }
+  updateDisplay();
+})
+
+let buttonToSortByRating = document.getElementById("sort-rating");
+buttonToSortByRating.addEventListener("click", () => {
+  if (sortMode != "rating") {
+    sortMode = "rating";
+    console.log("I sort by rating now");
+  } else {
+    sortMode = "";
+    console.log("I don't sort now");
+  }
+  updateDisplay();
+})
+
+
+function sortByTitle(array) {
+  array.sort((a, b) => {
+    if (a.title.toUpperCase() < b.title.toUpperCase()) return -1;
+    if (a.title.toUpperCase() > b.title.toUpperCase()) return 1;
+    return 0;
+  });
+  return array;
+}
+
+function sortByReleaseDate(array) {
+  array.sort((a, b) => {
+    if (+a.releaseDate < +b.releaseDate) return -1;
+    if (+a.releaseDate > +b.releaseDate) return 1;
+    return 0;
+  });
+  return array;
+}
+
+function sortByIsWatched(array) {
+  array.sort((a, b) => {
+    if (a.isWatched < +b.isWatched) return -1;
+    if (+a.isWatched> +b.isWatched) return 1;
+    return 0;
+  });
+  return array;
+}
+
+function sortByRating(array) {
+  array.sort((a, b) => {
+    if (+a.rating < +b.rating) return -1;
+    if (+a.rating > +b.rating) return 1;
+    return 0;
+  });
+  return array;
+}
