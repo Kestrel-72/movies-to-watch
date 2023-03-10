@@ -163,6 +163,13 @@ function createListItem(movie, index) {
   }
   newH3.append(newReleaseDate);
 
+  let newIsWatched = document.createElement("span");
+  newIsWatched.classList.add("check", "material-icons");
+  if (movie.isWatched) {
+    newIsWatched.textContent = "done";
+  }
+  newListItem.append(newIsWatched);
+
   let ratingDiv = document.createElement("div");
   ratingDiv.classList.add("rating");
   ratingDiv.textContent = movie.rating;
