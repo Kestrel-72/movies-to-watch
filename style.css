@@ -51,16 +51,20 @@ header button.add-new-movie span{
 
 .filter-section {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .filter-section label {
   margin-right: 10px;
-  
+  font-size: 1.2rem;
 }
 
-.filter-section select, .filter-section label {
-  font-size: 1.2rem;
+.sort-button {
+  width: 110px;
+  height: 30px;
+  font-size: 1rem;
+  border-radius: 4px;
 }
 
 .to-watch-list, .movie-form ul {
