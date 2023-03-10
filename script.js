@@ -59,7 +59,7 @@ function createFormSection(movie = undefined) {
       label.setAttribute("for", "year");
       label.textContent = "Release date: ";
       input.setAttribute("id", "year");
-      input.setAttribute("type", "text");
+      input.setAttribute("type", "number");
       if (movie != undefined) input.value = movie.releaseDate;
     } else if (i == 2) {
       label.setAttribute("for", "is-watched");
@@ -156,7 +156,7 @@ function pushMovieToArray() {
   let rating = document.getElementById("stars").value;
 
   let newMovie = new Movie(title, releaseDate, isWatched, rating);
-  moviesArray.push(newMovie);
+  moviesArray.unshift(newMovie);
 }
 
 function createListItem(movie, index) {
@@ -206,7 +206,7 @@ function clearAside() {
 }
 
 function showRecommendations() {
-  let newMovie_1 = new Movie("Breaking Bad", "2008-2013", true, "10");
+  let newMovie_1 = new Movie("Breaking Bad", "2008", true, "10");
   let newMovie_2 = new Movie("Fury", "2014", true, "7");
   let newMovie_3 = new Movie("Twilight", "2007", false, "");
   let newMovie_4 = new Movie("Harry Potter", "2001", true, "9");
@@ -275,7 +275,6 @@ function sortByTitle(array) {
     if (a.title.toUpperCase() > b.title.toUpperCase()) return 1;
     return 0;
   });
-  return array;
 }
 
 function sortByReleaseDate(array) {
@@ -284,23 +283,20 @@ function sortByReleaseDate(array) {
     if (+a.releaseDate > +b.releaseDate) return 1;
     return 0;
   });
-  return array;
 }
 
 function sortByIsWatched(array) {
   array.sort((a, b) => {
-    if (a.isWatched < +b.isWatched) return -1;
-    if (+a.isWatched> +b.isWatched) return 1;
+    if (a.isWatched < b.isWatched) return -1;
+    if (a.isWatched > b.isWatched) return 1;
     return 0;
   });
-  return array;
 }
 
 function sortByRating(array) {
   array.sort((a, b) => {
-    if (+a.rating < +b.rating) return -1;
-    if (+a.rating > +b.rating) return 1;
+    if (+a.rating > +b.rating) return -1;
+    if (+a.rating < +b.rating) return 1;
     return 0;
   });
-  return array;
 }
