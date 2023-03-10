@@ -95,6 +95,7 @@ header button.add-new-movie span{
 .check {
   display: block;
   margin-right: auto;
+  margin-left: 20px;
 }
 
 .to-watch-list li div.rating {
