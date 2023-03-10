@@ -46,7 +46,7 @@ function createFormSection(movie = undefined) {
       label.setAttribute("for", "year");
       label.textContent = "Release date: ";
       input.setAttribute("id", "year");
-      input.setAttribute("type", "number");
+      input.setAttribute("type", "text");
       if (movie != undefined) input.value = movie.releaseDate;
     } else if (i == 2) {
       label.setAttribute("for", "is-watched");
