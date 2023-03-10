@@ -74,6 +74,7 @@ header button.add-new-movie span{
   padding: 16px;
   border-radius: 8px;
   height: min-content;
+  overflow-wrap: break-word;
 }
 
 .to-watch-list > li:hover {
@@ -83,6 +84,8 @@ header button.add-new-movie span{
 .to-watch-list li h3 {
   font-size: 1.5rem;
   margin: 0;
+  width: 70%;
+  
 }
 
 .to-watch-list li div.rating {
@@ -102,8 +105,9 @@ header button.add-new-movie span{
 }
 
 .sidebar h2 {
-  width: max-content;
+  width: auto;
   margin: 0 auto;
+  overflow-wrap: break-word;
 }
 
 .movie-form ul {
