@@ -184,3 +184,18 @@ function clearDisplay() {
 function clearAside() {
   aside.innerHTML = "";
 }
+
+function showRecommendations() {
+  let newMovie_1 = new Movie("Breaking Bad", "2008-2013", true, "10");
+  let newMovie_2 = new Movie("Fury", "2014", true, "7");
+  let newMovie_3 = new Movie("Twilight", "2007", false, "");
+  let newMovie_4 = new Movie("Harry Potter", "2001", true, "9");
+  let newMovie_5 = new Movie("Drive", "2011", true, "8");
+  moviesArray.push(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
+}
+
+let buttonToRecommend = document.querySelector(".recommendations-button");
+buttonToRecommend.addEventListener("click", () => {
+  showRecommendations();
+  updateDisplay();
+});
