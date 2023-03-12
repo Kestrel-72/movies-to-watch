@@ -11,10 +11,12 @@ function Movie(title, releaseDate, isWatched, rating, index) {
   this.index = index;
 }
 
-let newMovieButton = document.querySelector(".add-new-movie");
-newMovieButton.addEventListener("click", () => {
-  clearAside();
-  createFormSection();
+let newMovieButtons = document.querySelectorAll(".add-new-movie");
+[...newMovieButtons].forEach(button => {
+  button.addEventListener("click", () => {
+    clearAside();
+    createFormSection();
+})
 });
 
 function updateDisplay() {
@@ -88,12 +90,12 @@ function createFormSection(movie = undefined) {
   divWithFormButtons.classList.add("form-buttons"); 
 
   let buttonToCancel = document.createElement("button");
-  buttonToCancel.classList.add("discard-changes");
+  buttonToCancel.classList.add("close");
   buttonToCancel.setAttribute("type", "button");
   let spanOne = document.createElement("span");
   spanOne.classList.add("material-icons");
-  spanOne.textContent = "delete";
-  buttonToCancel.append(spanOne, " Cancel");
+  spanOne.textContent = "close";
+  buttonToCancel.append(spanOne, " Close");
   buttonToCancel.addEventListener("click", clearAside);
   divWithFormButtons.append(buttonToCancel);
 
@@ -330,9 +332,14 @@ function sortByRating(array) {
 }
 
 function highlightButton(button) {
-  button.style.cssText = "background-color: green;"
+  button.style.cssText = "background-color: green; border: none; color: white;"
 }
 
 function disableHighlight() {
-  sortingButtons.forEach(element => element.style.cssText = "background-color: #EFEFEF");
+  sortingButtons.forEach(element => element.style.cssText = "background-color: #EFEFEF;");
 }
+
+let greetingsButtons = document.querySelectorAll(".greetings-button");
+[...greetingsButtons].forEach(button => button.addEventListener("click", () => {
+  document.querySelector(".greetings-div").remove();
+}));

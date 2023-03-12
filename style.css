@@ -31,14 +31,13 @@ h1 {
   padding-left: 16px;
 }
 
-button.add-new-movie, button.discard-changes, button.save-movie {
+.add-new-movie, .discard-changes, .save-movie, .close, .recommendations-button {
   font-size: 1rem;
   width: 100px;
   height: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(0, 167, 0);
   color: white;
   border: none;
   border-radius: 6px;
@@ -159,3 +158,32 @@ button.discard-changes {
   background-color: rgb(124, 32, 32);
 }
 
+button.close {
+  background-color: rgb(238, 179, 53);
+}
+
+.greetings-div p {
+  margin: 30px 0;;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.greetings-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.recommendations-button, .greetings-button {
+  font-size: 1.5rem;
+  width: 220px;
+  height: 100px;
+  padding: 16px;
+}
+
+.recommendations-button {
+  background-color: rgb(69, 157, 235);
+}
+
+button.add-new-movie, button.save-movie {
+  background-color: rgb(0, 167, 0);
+}
