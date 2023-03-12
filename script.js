@@ -220,49 +220,67 @@ buttonToRecommend.addEventListener("click", () => {
   updateDisplay();
 });
 
+let sortingButtons = [];
+
 let buttonToSortByTitle = document.getElementById("sort-title");
+sortingButtons.push(buttonToSortByTitle);
 buttonToSortByTitle.addEventListener("click", () => {
   if (sortMode != "title") {
     sortMode = "title";
+    disableHighlight();
+    highlightButton(buttonToSortByTitle);
     console.log("I sort by title now");
   } else {
     sortMode = "";
+    disableHighlight();
     console.log("I don't sort now");
   }
   updateDisplay();
 })
 
 let buttonToSortByReleaseDate= document.getElementById("sort-year");
+sortingButtons.push(buttonToSortByReleaseDate);
 buttonToSortByReleaseDate.addEventListener("click", () => {
   if (sortMode != "year") {
     sortMode = "year";
+    disableHighlight();
+    highlightButton(buttonToSortByReleaseDate);
     console.log("I sort by year now");
   } else {
     sortMode = "";
+    disableHighlight();
     console.log("I don't sort now");
   }
   updateDisplay();
 })
 
 let buttonToSortByIsWatched = document.getElementById("sort-watched");
+sortingButtons.push(buttonToSortByIsWatched);
 buttonToSortByIsWatched.addEventListener("click", () => {
   if (sortMode != "isWatched") {
     sortMode = "isWatched";
+    disableHighlight();
+    highlightButton(buttonToSortByIsWatched);
     console.log("I sort by isWatched now");
   } else {
     sortMode = "";
+    disableHighlight();
     console.log("I don't sort now");
   }
   updateDisplay();
 })
 
 let buttonToSortByRating = document.getElementById("sort-rating");
+sortingButtons.push(buttonToSortByRating);
 buttonToSortByRating.addEventListener("click", () => {
   if (sortMode != "rating") {
     sortMode = "rating";
+    disableHighlight();
+    highlightButton(buttonToSortByRating);
     console.log("I sort by rating now");
   } else {
     sortMode = "";
+    disableHighlight();
     console.log("I don't sort now");
   }
   updateDisplay();
@@ -299,4 +317,12 @@ function sortByRating(array) {
     if (+a.rating < +b.rating) return 1;
     return 0;
   });
+}
+
+function highlightButton(button) {
+  button.style.cssText = "background-color: green;"
+}
+
+function disableHighlight() {
+  sortingButtons.forEach(element => element.style.cssText = "background-color: #EFEFEF");
 }
