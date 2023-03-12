@@ -1,14 +1,14 @@
 let moviesArray = [];
-let unsortedArray = [];
 let toWatchList = document.querySelector(".to-watch-list");
 let aside = document.querySelector(".sidebar");
 let sortMode = "";
 
-function Movie(title, releaseDate, isWatched, rating) {
+function Movie(title, releaseDate, isWatched, rating, index) {
   this.title = title;
   this.releaseDate = releaseDate;
   this.isWatched = isWatched;
   this.rating = rating;
+  this.index = index;
 }
 
 let newMovieButton = document.querySelector(".add-new-movie");
@@ -19,9 +19,7 @@ newMovieButton.addEventListener("click", () => {
 
 function updateDisplay() {
   if (sortMode == "") {
-    clearDisplay();
-    unsortedArray.forEach(movie => createListItem(movie, unsortedArray.indexOf(movie)));
-    return;
+    sortByIndex(moviesArray);
   }
 	if (sortMode == "title") {
 	  sortByTitle(moviesArray);
@@ -161,9 +159,8 @@ function pushMovieToArray() {
   let isWatched = document.getElementById("is-watched").checked;
   let rating = document.getElementById("stars").value;
 
-  let newMovie = new Movie(title, releaseDate, isWatched, rating);
+  let newMovie = new Movie(title, releaseDate, isWatched, rating, moviesArray.length);
   moviesArray.unshift(newMovie);
-  unsortedArray.unshift(newMovie);
 }
 
 function createListItem(movie, index) {
@@ -213,13 +210,11 @@ function clearAside() {
 }
 
 function showRecommendations() {
-  let newMovie_1 = new Movie("Breaking Bad", "2008", true, "10");
-  let newMovie_2 = new Movie("Fury", "2014", true, "7");
-  let newMovie_3 = new Movie("Twilight", "2007", false, "");
-  let newMovie_4 = new Movie("Harry Potter", "2001", true, "9");
-  let newMovie_5 = new Movie("Drive", "2011", true, "8");
-  moviesArray.unshift(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
-  unsortedArray.unshift(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
+  moviesArray.unshift(new Movie("Breaking Bad", "2008", true, "10", moviesArray.length));
+  moviesArray.unshift(new Movie("Fury", "2014", true, "7", moviesArray.length));
+  moviesArray.unshift(new Movie("Twilight", "2007", false, "", moviesArray.length));
+  moviesArray.unshift(new Movie("Harry Potter", "2001", true, "9", moviesArray.length));
+  moviesArray.unshift(new Movie("Drive", "2011", true, "8", moviesArray.length));
 }
 
 let buttonToRecommend = document.querySelector(".recommendations-button");
@@ -294,6 +289,13 @@ buttonToSortByRating.addEventListener("click", () => {
   updateDisplay();
 })
 
+function sortByIndex(array) {
+  array.sort((a, b) => {
+    if (a.index > b.index) return -1;
+    if (a.index < b.index) return 1;
+    return 0;
+  });
+}
 
 function sortByTitle(array) {
   array.sort((a, b) => {
