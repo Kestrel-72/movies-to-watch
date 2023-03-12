@@ -1,7 +1,8 @@
 let moviesArray = [];
+let unsortedArray = [];
 let toWatchList = document.querySelector(".to-watch-list");
 let aside = document.querySelector(".sidebar");
-let sortMode;
+let sortMode = "";
 
 function Movie(title, releaseDate, isWatched, rating) {
   this.title = title;
@@ -17,6 +18,11 @@ newMovieButton.addEventListener("click", () => {
 });
 
 function updateDisplay() {
+  if (sortMode == "") {
+    clearDisplay();
+    unsortedArray.forEach(movie => createListItem(movie, unsortedArray.indexOf(movie)));
+    return;
+  }
 	if (sortMode == "title") {
 	  sortByTitle(moviesArray);
 	}
@@ -157,6 +163,7 @@ function pushMovieToArray() {
 
   let newMovie = new Movie(title, releaseDate, isWatched, rating);
   moviesArray.unshift(newMovie);
+  unsortedArray.unshift(newMovie);
 }
 
 function createListItem(movie, index) {
@@ -211,7 +218,8 @@ function showRecommendations() {
   let newMovie_3 = new Movie("Twilight", "2007", false, "");
   let newMovie_4 = new Movie("Harry Potter", "2001", true, "9");
   let newMovie_5 = new Movie("Drive", "2011", true, "8");
-  moviesArray.push(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
+  moviesArray.unshift(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
+  unsortedArray.unshift(newMovie_1, newMovie_2, newMovie_3, newMovie_4, newMovie_5);
 }
 
 let buttonToRecommend = document.querySelector(".recommendations-button");
