@@ -3,13 +3,25 @@ let toWatchList = document.querySelector(".to-watch-list");
 let aside = document.querySelector(".sidebar");
 let sortMode = "";
 
-function Movie(title, releaseDate, isWatched, rating, index) {
-  this.title = title;
-  this.releaseDate = releaseDate;
-  this.isWatched = isWatched;
-  this.rating = rating;
-  this.index = index;
+// function Movie(title, releaseDate, isWatched, rating, index) {
+//   this.title = title;
+//   this.releaseDate = releaseDate;
+//   this.isWatched = isWatched;
+//   this.rating = rating;
+//   this.index = index;
+// }
+class Movie {
+  constructor (title, releaseDate, isWatched, rating, index) {
+    this.title = title;
+    this.releaseDate = releaseDate;
+    this.isWatched = isWatched;
+    this.rating = rating;
+    this.index = index;
+  }
 }
+// const Movie = (title, releaseDate, isWatched, rating, index) => { // factory function
+//   return { title, releaseDate, isWatched, rating, index };
+// };
 
 let newMovieButtons = document.querySelectorAll(".add-new-movie");
 [...newMovieButtons].forEach(button => {
